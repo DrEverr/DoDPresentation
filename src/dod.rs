@@ -29,21 +29,21 @@ pub fn animate(world: &mut World) {
     for (pos, vel) in world.positions.iter_mut().zip(world.velocities.iter_mut()) {
         *pos = (pos.0 + vel.0, pos.1 + vel.1);
 
-        if pos.0 < 0.0 {
-            pos.0 = 0.0;
-            vel.0 *= -1.0;
-        }
-        if pos.0 > world.width {
-            pos.0 = world.width;
-            vel.0 *= -1.0;
-        }
-        if pos.1 > world.height {
-            pos.1 = world.height;
-            vel.1 *= -1.0;
-        }
-        if pos.1 < 0.0 {
-            pos.1 = 0.0;
-            vel.1 *= -1.0;
+        if pos.0 < 0.0 || pos.0 > world.width - 60.0 || pos.1 < 0.0 || pos.1 > world.height - 60.0 {
+            if pos.0 < 0.0 {
+                pos.0 = 0.0;
+                vel.0 *= -1.0;
+            } else if pos.0 > world.width - 60.0 {
+                pos.0 = world.width - 60.0;
+                vel.0 *= -1.0;
+            }
+            if pos.1 > world.height - 60.0 {
+                pos.1 = world.height - 60.0;
+                vel.1 *= -1.0;
+            } else if pos.1 < 0.0 {
+                pos.1 = 0.0;
+                vel.1 *= -1.0;
+            }
         }
     }
 }

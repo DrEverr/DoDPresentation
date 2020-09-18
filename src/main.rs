@@ -5,7 +5,7 @@ pub use dod::{animate, init, World};
 use piston_window::*;
 
 fn main() {
-    let mut world = init(4, 512.0, 512.0);
+    let mut world = init(15, 512.0, 512.0);
     let opengl = OpenGL::V3_2;
     let mut window: PistonWindow = WindowSettings::new("showcase", [512; 2])
         .exit_on_esc(true)
