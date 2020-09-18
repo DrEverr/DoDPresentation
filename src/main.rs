@@ -13,15 +13,15 @@ fn main() {
         .build()
         .unwrap();
 
-    while let Some(e) = window.next() {
+    while let Some(event) = window.next() {
         animate(&mut world);
-        window.draw_2d(&e, |c, g, _| {
-            clear([0.6; 4], g);
+        window.draw_2d(&event, |content, graphic, _| {
+            clear([0.6; 4], graphic);
             for pos in world.positions.iter() {
-                let c = c.trans(pos.0, pos.1);
+                let c = content.trans(pos.0, pos.1);
                 let green = [1.0, 1.0, 0.0, 1.0];
                 let rect = [0.0, 0.0, 60.0, 60.0];
-                ellipse(green, rect, c.transform, g);
+                ellipse(green, rect, c.transform, graphic);
             }
         });
     }
